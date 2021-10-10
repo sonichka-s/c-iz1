@@ -10,10 +10,11 @@ Storage* storage_constructor(size_t length, size_t capacity){
     }
     buf->length = length;
     buf->capacity = capacity;
+    return buf;
 }
 
 int add_song(Storage* storage, char* author, char* singer, char* name, char* duration) {
-    Song* temp;
+    Song* temp = (Song*)malloc(sizeof(Song));
 
     temp->author = author;
     temp->singer = singer;
@@ -24,7 +25,7 @@ int add_song(Storage* storage, char* author, char* singer, char* name, char* dur
         return NULL;
     }
 
-    if (storage->length + 1 > storage->capacity){
+    if (storage->length + 1 >= storage->capacity){
         storage->capacity *= 2;
         storage->song = (Song *) realloc(storage->song,sizeof(Song) * storage->capacity);
 
@@ -32,9 +33,8 @@ int add_song(Storage* storage, char* author, char* singer, char* name, char* dur
             return NULL;
         }
     }
-    size_t index = storage->length - 1;
 
-    storage->song[index] = *temp;
+    storage->song[storage->length] = *temp;
     storage->length += 1;
 
     return 1;
@@ -51,6 +51,7 @@ int print_author_eq_singer(Storage* storage){
             puts(storage->song[i].name);
             printf("%s","duration: ");
             puts(storage->song[i].duration);
+            printf("\n");
         }
     }
 }

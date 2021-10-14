@@ -12,6 +12,8 @@ int main() {
 
     print_author_eq_singer(storage);
 
+    free_storage(&storage);
+
     return 0;
 }
 

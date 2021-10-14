@@ -10,7 +10,7 @@ set(CMAKE_C_FLAGS "--coverage")
 add_executable(main main.c)
 
 add_subdirectory(src)
-
+add_subdirectory(Gtest)
 target_link_libraries(main LINK_PUBLIC song storage)
 
-#add_subdirectory(tests)
+

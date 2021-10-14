@@ -22,7 +22,7 @@ int add_song(Storage* storage, char* author, char* singer, char* name, char* dur
     temp->duration = duration;
 
     if(storage == NULL || temp == NULL){
-        return NULL;
+        return 0;
     }
 
     if (storage->length + 1 >= storage->capacity){
@@ -30,7 +30,7 @@ int add_song(Storage* storage, char* author, char* singer, char* name, char* dur
         storage->song = (Song *) realloc(storage->song,sizeof(Song) * storage->capacity);
 
         if (storage->song == NULL) {
-            return NULL;
+            return 0;
         }
     }
 
@@ -60,11 +60,15 @@ int free_storage(Storage** storage){
     if (*storage == NULL){
         return 1;
     }
+
     if ((*storage)->song == NULL){
         free(*storage);
         *storage = NULL;
+        return 1;
     }
+
     free((*storage)->song);
     free(*storage);
     *storage = NULL;
+    return 1;
 }

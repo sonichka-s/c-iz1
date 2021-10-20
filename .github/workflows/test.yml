@@ -14,3 +14,9 @@ jobs:
 
         - name: print trash
           run: echo "hello world"
+
+        - name: installing c++/c compiler
+          run: sudo apt install build-essential
+
+        - name: build-project
+          run: mkdir build && cd build && cmake --build .. && make && ls -la

@@ -1,0 +1,37 @@
+name: test
+
+on:
+  push:
+    branches: [ dev, main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+    abc:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+
+        - name: print trash
+          run: echo "hello world"
+
+        - name: installing c++/c compiler
+          run: sudo apt install build-essential
+
+        - name: installing python3
+          run: sudo apt install python3
+
+        - name: installing valgrind
+          run: sudo apt install valgrind
+
+        - name: install gtest
+          run: sudo apt install libgtest-dev
+
+        - name: build-project
+          run: mkdir build && cd build && cmake .. && cmake --build . && make && ls -la
+
+        - name: upload built projeck
+          uses: actions/upload-artifact@v2
+          with:
+              name: atr-name
+              path: build/

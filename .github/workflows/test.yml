@@ -18,5 +18,16 @@ jobs:
         - name: installing c++/c compiler
           run: sudo apt install build-essential
 
+        - name: installing python3
+          run: sudo apt install python3
+
+        - name: installing valgrind
+          run: sudo apt install valgrind
+
+        - name: install gtest
+          run: sudo apt install libgtest-dev
+
         - name: build-project
           run: mkdir build && cd build && cmake .. && cmake --build . && make && ls -la
+
+

@@ -30,4 +30,8 @@ jobs:
         - name: build-project
           run: mkdir build && cd build && cmake .. && cmake --build . && make && ls -la
 
-
+        - name: upload built projeck
+          uses: actions/upload-artifact@v2
+          with:
+              name: atr-name
+              path: build/
